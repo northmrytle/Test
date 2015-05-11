@@ -18,9 +18,22 @@ and open the template in the editor.
     </head>
     <body>
         <div>TODO write content</div>
+        <div id="appTitle"></div>
         <script >
             alert('this is a test');
             
+            getSystemName();
+            
+            function getSystemName(){
+                try {
+                    systemName = localStorage.systemName;
+                } catch(err) {}
+
+                $.get('http://helm.vms.net/config/systemName', function(data){
+                        document.getElementById('appTitle').innerHTML = data.trim() + ' - VMS';
+                        console.log('getting systemName');
+                    });                                
+            }
             </script>
     </body>
 </html>
